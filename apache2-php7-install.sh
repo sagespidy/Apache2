@@ -36,6 +36,7 @@ echo -e "\n\n\n"
 #install php7
 
 apt-get -y install php7.0*
+apt-get remove php7.0-snmp -y
 
 echo -e "\n\n\n"
 echo "			PHP 7 Installed.	"

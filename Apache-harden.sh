@@ -1,5 +1,11 @@
 #!/bin/bash
 # script to harden apache2
+echo "#################################################################################################################"
+echo "###                                                                                                           ###"
+echo "###                                  Apache Server Hardening                                                  ###"
+echo "###                                                                                                           ###"
+echo "#################################################################################################################"
+
 a2enmod headers
 #Increase KeepAliveTimeout
 sed -i 's/KeepAliveTimeout 5/KeepAliveTimeout 60/' /etc/apache2/apache2.conf
@@ -28,3 +34,10 @@ echo " 			Restarting Apache "
 echo -e "\n\n\n"
 
 service apache2 restart
+
+echo "#################################################################################################################"
+echo "###                                                                                                           ###"
+echo "###                                  Testing The Results....                                                  ###"
+echo "###                                                                                                           ###"
+echo "#################################################################################################################"
+curl -I localhost
