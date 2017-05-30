@@ -81,7 +81,7 @@ sed -i 's/KeepAliveTimeout 5/KeepAliveTimeout 60/' /etc/apache2/apache2.conf
 # Making Apache Server Secure
 echo " Header set X-XSS-Protection "1; mode=block" " >> /etc/apache2/apache2.conf
 echo "Header always set X-Content-Type-Options "nosniff" " >>/etc/apache2/apache2.conf
-echo 'Header always set Strict-Transport-Security "max-age=63072000;includeSubDomains"' >>/etc/apache2/apache2.conf
+echo "Header always set Strict-Transport-Security "max-age=63072000;includeSubDomains"" >>/etc/apache2/apache2.conf
 
 # Stop Click JAcking
 echo "Header always append X-Frame-Options SAMEORIGIN" >> /etc/apache2/apache2.conf
@@ -95,7 +95,8 @@ echo "ServerTokens Prod" >> /etc/apache2/apache2.conf
 echo "FileETag None" >>/etc/apache2/apache2.conf
 #Disable Trace
 echo " TraceEnable off" >>/etc/apache2/apache2.conf
-# enable actual Ip Logging
+#enable actual ip Logging
+
 sed -i 's/LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined/LogFormat "%{X-Forwarded-For}i %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined/' /etc/apache2/apache2.conf
 
 #Enable Directory permissions
@@ -118,16 +119,16 @@ echo -e " \n\n\n "
 echo " Please enter the name of user: "
 # Take input from user
 
- read usr_name
+usr_name=lvme
 
 # Create a directory for user
 
 mkdir -p /var/www/html/$usr_name
 
 # Make a new user and  set his Password
-useradd $usr_name -d /var/www/html/$usr_name -s /bin/bash
+useradd $usr_name -d /home/$usr_name -s /bin/bash
 
-chown -R $usr_name:$usr_name /var/www/html/$usr_name
+#chown -R $usr_name:$usr_name /var/www/html/$usr_name
 
 echo "$usr_name:$usr_name-123#@"|chpasswd
 
@@ -153,19 +154,11 @@ echo "Synchronizing System Time"
 apt-get install -y ntp
 echo -e "\n\n\n\n\n\n"
 echo -e "\n\n\n\n\n\n"
-echo "Enter Hostname. To identify different servers i.e Dev,Qa,Satging, Production ..... "
-# Get Hostname from user
-read hname
 
-hostnamectl set-hostname $h_name
-
-# Making enteries in /etc/hosts file
-echo "127.0.0.1 $h_name" >> /etc/hosts
-
-# tell apache to use  localhost as Hostname
-echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 
 #install postfix
-apt-get install -y postfix
-apt-get install  -y zip unzip
+
+
+
+DEBIAN_FRONTEND=noninteractive  apt-get install -y postfix
