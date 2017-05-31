@@ -155,7 +155,7 @@ echo -e "\n\n\n\n\n\n"
 echo -e "\n\n\n\n\n\n"
 echo "Enter Hostname. To identify different servers i.e Dev,Qa,Satging, Production ..... "
 # Get Hostname from user
-read hname
+read h_name
 
 hostnamectl set-hostname $h_name
 

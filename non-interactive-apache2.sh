@@ -100,7 +100,7 @@ echo " TraceEnable off" >>/etc/apache2/apache2.conf
 sed -i 's/LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined/LogFormat "%{X-Forwarded-For}i %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined/' /etc/apache2/apache2.conf
 
 #Enable Directory permissions
-#echo -e "<Directory /var/www/html> \n Options  FollowSymLinks\n AllowOverride all \n Require all granted \n </Directory>"  >> /etc/apache2/sites-enabled/000-default.conf
+#echo - "<Directory /var/www/html> \n Options  FollowSymLinks\n AllowOverride all \n Require all granted \n </Directory>"  >> /etc/apache2/sites-enabled/000-default.conf
 
 echo " 			Restarting Apache "
 echo -e "\n\n\n"
@@ -123,10 +123,10 @@ usr_name=lvme
 
 # Create a directory for user
 
-mkdir -p /var/www/html/$usr_name
+mkdir -p /var/www/html/
 
 # Make a new user and  set his Password
-useradd $usr_name -d /home/$usr_name -s /bin/bash
+useradd $usr_name -d /var/www/html -s /bin/bash
 
 #chown -R $usr_name:$usr_name /var/www/html/$usr_name
 
