@@ -101,6 +101,8 @@ sed -i 's/LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\
 
 #Enable Directory permissions
 #echo - "<Directory /var/www/html> \n Options  FollowSymLinks\n AllowOverride all \n Require all granted \n </Directory>"  >> /etc/apache2/sites-enabled/000-default.conf
+sed -i  '/var/a<Directory /var/www/html/>\nOptions FollowSymLinks\nAllowOverride all\nRequire all granted\n</Directory>\nRewriteEngine On\nRewriteCond %{HTTPS} off\nRewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}' /etc/apache2/sites-enabled/000-default.conf
+
 
 echo " 			Restarting Apache "
 echo -e "\n\n\n"
