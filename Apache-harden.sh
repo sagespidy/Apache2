@@ -29,8 +29,8 @@ echo "FileETag None" >>/etc/apache2/apache2.conf
 #Disable Trace
 echo " TraceEnable off" >>/etc/apache2/apache2.conf
 # enable actual Ip Logging
+sed  -i 's/LogFormat "%h %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/LogFormat "%{X-Forwarded-For} %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/' /etc/apache2/apache2.conf
 
- 
 
 echo " 			Restarting Apache "
 echo -e "\n\n\n"

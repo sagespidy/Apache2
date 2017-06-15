@@ -58,9 +58,9 @@ echo -e "\n\n\n"
 echo "Enabling Various Modules"
 
 a2enmod php7.0
-a2enconf php7.0-fpm
+
 a2enmod rewrite
-a2enmod proxy_fcgi setenv
+
 a2enmod headers
 a2enmod mod-security
 a2enmod ssl
@@ -97,8 +97,7 @@ echo "FileETag None" >>/etc/apache2/apache2.conf
 echo " TraceEnable off" >>/etc/apache2/apache2.conf
 #enable actual ip Logging
 
-sed -i 's/LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined/LogFormat "%{X-Forwarded-For}i %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined/' /etc/apache2/apache2.conf
-
+sed  -i 's/LogFormat "%h %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/LogFormat "%{X-Forwarded-For} %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/' /etc/apache2/apache2.conf
 #Enable Directory permissions
 #echo - "<Directory /var/www/html> \n Options  FollowSymLinks\n AllowOverride all \n Require all granted \n </Directory>"  >> /etc/apache2/sites-enabled/000-default.conf
 sed -i  '/var/a<Directory /var/www/html/>\nOptions FollowSymLinks\nAllowOverride all\nRequire all granted\n</Directory>\nRewriteEngine On\nRewriteCond %{HTTPS} off\nRewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}' /etc/apache2/sites-enabled/000-default.conf
@@ -155,7 +154,7 @@ echo -e "\n\n\n\n\n\n"
 echo "Synchronizing System Time"
 
 apt-get install -y ntp
-apt-get install -y htop ncdu
+apt-get install -y htop ncdu zip unzip
 echo -e "\n\n\n\n\n\n"
 echo -e "\n\n\n\n\n\n"
 
