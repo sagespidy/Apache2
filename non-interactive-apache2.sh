@@ -63,7 +63,8 @@ a2enmod rewrite
 a2enmod proxy_fcgi setenv
 a2enmod headers
 a2enmod mod-security
-
+a2enmod ssl
+a2ensite default-ssl.conf
 
 echo -e "\n\n\n"
 echo "		Required Modules Enabled"
@@ -77,11 +78,10 @@ sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 20M/'  /etc/php/7.0/apa
 #Increase KeepAliveTimeout
 sed -i 's/KeepAliveTimeout 5/KeepAliveTimeout 60/' /etc/apache2/apache2.conf
 
-
 # Making Apache Server Secure
-echo " Header set X-XSS-Protection "1; mode=block" " >> /etc/apache2/apache2.conf
-echo "Header always set X-Content-Type-Options "nosniff" " >>/etc/apache2/apache2.conf
-echo "Header always set Strict-Transport-Security "max-age=63072000;includeSubDomains"" >>/etc/apache2/apache2.conf
+echo ' Header set X-XSS-Protection "1; mode=block" ' >> /etc/apache2/apache2.conf
+echo 'Header always set X-Content-Type-Options "nosniff" ' >>/etc/apache2/apache2.conf
+echo 'Header always set Strict-Transport-Security "max-age=63072000;includeSubDomains"' >>/etc/apache2/apache2.conf
 
 # Stop Click JAcking
 echo "Header always append X-Frame-Options SAMEORIGIN" >> /etc/apache2/apache2.conf
@@ -103,6 +103,7 @@ sed -i 's/LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\
 #echo - "<Directory /var/www/html> \n Options  FollowSymLinks\n AllowOverride all \n Require all granted \n </Directory>"  >> /etc/apache2/sites-enabled/000-default.conf
 sed -i  '/var/a<Directory /var/www/html/>\nOptions FollowSymLinks\nAllowOverride all\nRequire all granted\n</Directory>\nRewriteEngine On\nRewriteCond %{HTTPS} off\nRewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}' /etc/apache2/sites-enabled/000-default.conf
 
+sed -i  '/var/a<Directory /var/www/html/>\nOptions FollowSymLinks\nAllowOverride all\nRequire all granted\n</Directory>' /etc/apache2/sites-enabled/default-ssl.conf
 
 echo " 			Restarting Apache "
 echo -e "\n\n\n"
@@ -154,6 +155,7 @@ echo -e "\n\n\n\n\n\n"
 echo "Synchronizing System Time"
 
 apt-get install -y ntp
+apt-get install -y htop ncdu
 echo -e "\n\n\n\n\n\n"
 echo -e "\n\n\n\n\n\n"
 
