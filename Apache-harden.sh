@@ -32,7 +32,7 @@ echo " TraceEnable off" >>/etc/apache2/apache2.conf
 #sed  -i 's/LogFormat "%h %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/LogFormat "%{X-Forwarded-For}i %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/' /etc/apache2/apache2.conf
 
 
-echo " 			Restarting Apache "
+echo " 			Reloading Apache "
 echo -e "\n\n\n"
 
 service apache2 reload
