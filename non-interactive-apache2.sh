@@ -130,7 +130,7 @@ mkdir -p /var/www/html/
 # Make a new user and  set his Password
 useradd $usr_name -d /var/www/html -s /bin/bash
 
-#chown -R $usr_name:$usr_name /var/www/html/$usr_name
+chown -R $usr_name:$usr_name /var/www/html/
 
 echo "$usr_name:$usr_name-123#@"|chpasswd
 
