@@ -100,7 +100,7 @@ echo " TraceEnable off" >>/etc/apache2/apache2.conf
 sed  -i 's/LogFormat "%h %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/LogFormat "%{X-Forwarded-For}i %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/' /etc/apache2/apache2.conf
 #Enable Directory permissions
 #echo - "<Directory /var/www/html> \n Options  FollowSymLinks\n AllowOverride all \n Require all granted \n </Directory>"  >> /etc/apache2/sites-enabled/000-default.conf
-sed -i  '/var/a<Directory /var/www/html/>\nOptions FollowSymLinks\nAllowOverride all\nRequire all granted\n</Directory>\nRewriteEngine On\nRewriteCond %{HTTPS} off\nRewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}' /etc/apache2/sites-enabled/000-default.conf
+sed -i  '/var/a<Directory /var/www/html/>\nOptions FollowSymLinks\nAllowOverride all\nRequire all granted\n</Directory>\n#RewriteEngine On\n#RewriteCond %{HTTPS} off\n#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}' /etc/apache2/sites-enabled/000-default.conf
 
 sed -i  '/var/a<Directory /var/www/html/>\nOptions FollowSymLinks\nAllowOverride all\nRequire all granted\n</Directory>' /etc/apache2/sites-enabled/default-ssl.conf
 
@@ -121,7 +121,7 @@ echo -e " \n\n\n "
 echo " Please enter the name of user: "
 # Take input from user
 
-usr_name=lvme
+usr_name=myhero
 
 # Create a directory for user
 
@@ -132,7 +132,7 @@ useradd $usr_name -d /var/www/html -s /bin/bash
 
 chown -R $usr_name:$usr_name /var/www/html/
 
-echo "$usr_name:$usr_name-123#@"|chpasswd
+echo "$usr_name:$usr_name-%^(*)58TGgjj"|chpasswd
 
 
 # Enable SSH login
