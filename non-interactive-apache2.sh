@@ -121,7 +121,7 @@ echo -e " \n\n\n "
 echo " Please enter the name of user: "
 # Take input from user
 
-usr_name=myhero
+usr_name=noahface
 
 # Create a directory for user
 
@@ -132,7 +132,7 @@ useradd $usr_name -d /var/www/html -s /bin/bash
 
 chown -R $usr_name:$usr_name /var/www/html/
 
-echo "$usr_name:$usr_name-%^(*)58TGgjj"|chpasswd
+echo "$usr_name:$usr_name-%^(*)%$&^gjvgtyyi7675"|chpasswd
 
 
 # Enable SSH login
