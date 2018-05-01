@@ -22,10 +22,13 @@ echo -e "\n\n\n";
 echo " 			Installing Apache... "
 
 # Install nginx
-apt-get install nginx
-apt-get install nginx-extras
+apt-get install nginx -y
+apt-get install nginx-extras -y
 
 
+wget https://raw.githubusercontent.com/sagespidy/Apache2/master/nginx-php.conf
+mv nginx-php.conf default
+mv default /etc/nginx/sites-enabled/default
 echo -e "\n\n\n"
 echo "			Nginx Installed	"
 echo -e "\n\n\n"
@@ -67,7 +70,7 @@ echo -e " \n\n\n "
 echo " Please enter the name of user: "
 # Take input from user
 
-usr_name=p2p
+usr_name=sportsstar
 
 # Create a directory for user
 
@@ -103,7 +106,3 @@ apt-get install -y ntp
 apt-get install -y htop ncdu zip unzip
 echo -e "\n\n\n\n\n\n"
 echo -e "\n\n\n\n\n\n"
-
-
-
-

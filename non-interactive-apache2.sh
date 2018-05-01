@@ -7,7 +7,7 @@ fi
 
 echo "#################################################################################################################"
 echo "#                                                                                                               #"
-echo "# 		Welcome!! This script will  install php-backend eviroment                                     #"
+echo "# 		Welcome!! This script will  install php-backend eviroment  noninteractively                                   #"
 echo "#                                                       							      #"
 echo "#################################################################################################################"
 echo -e "\n\n\n"
@@ -31,15 +31,17 @@ apt-get install libapache2-modsecurity -y
 echo -e "\n\n\n"
 echo "			Apache Installed	"
 echo -e "\n\n\n"
-echo  "			Installing PHP 7..."
+echo  "			Installing PHP 7.1.."
 echo -e "\n\n\n"
-#install php7
-
+#install php7.1
+apt-get install software-properties-common -y
+add-apt-repository ppa:ondrej/php -y
+apt-get update -y
 apt-get -y install php7.0*
 apt-get remove php7.0-snmp -y
 
 echo -e "\n\n\n"
-echo "			PHP 7 Installed.	"
+echo "			PHP 7.0 Installed.	"
 echo -e "\n\n\n"
 echo -e "\n\n\n"
 
@@ -97,7 +99,7 @@ echo "FileETag None" >>/etc/apache2/apache2.conf
 echo " TraceEnable off" >>/etc/apache2/apache2.conf
 #enable actual ip Logging
 
-sed  -i 's/LogFormat "%h %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/LogFormat "%{X-Forwarded-For}i %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/' /etc/apache2/apache2.conf
+#sed  -i 's/LogFormat "%h %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/LogFormat "%{X-Forwarded-For}i %l %u %t \\"%r\\" %>s %O \\"%{Referer}i\\" \\"%{User-Agent}i\\"" combined/' /etc/apache2/apache2.conf
 #Enable Directory permissions
 #echo - "<Directory /var/www/html> \n Options  FollowSymLinks\n AllowOverride all \n Require all granted \n </Directory>"  >> /etc/apache2/sites-enabled/000-default.conf
 sed -i  '/var/a<Directory /var/www/html/>\nOptions FollowSymLinks\nAllowOverride all\nRequire all granted\n</Directory>\n#RewriteEngine On\n#RewriteCond %{HTTPS} off\n#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}' /etc/apache2/sites-enabled/000-default.conf
@@ -121,7 +123,7 @@ echo -e " \n\n\n "
 echo " Please enter the name of user: "
 # Take input from user
 
-usr_name=noahface
+usr_name=ontheball
 
 # Create a directory for user
 
@@ -132,7 +134,7 @@ useradd $usr_name -d /var/www/html -s /bin/bash
 
 chown -R $usr_name:$usr_name /var/www/html/
 
-echo "$usr_name:$usr_name-%^(*)%$&^gjvgtyyi7675"|chpasswd
+echo "$usr_name:$usr_name-%^(*)%$&^gjvFiy\68gjh57YTs5"|chpasswd
 
 
 # Enable SSH login

@@ -5,3 +5,8 @@ LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" " combin
 
 
 LogFormat "%h %l %u" combined
+
+
+SSLCertificateFile      /etc/ssl/certs/r.crt
+SSLCertificateChainFile /etc/ssl/certs/rca.crt
+SSLCertificateKeyFile /etc/ssl/private/r.key

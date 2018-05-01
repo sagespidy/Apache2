@@ -1,0 +1,25 @@
+/etc/security/limits.conf
+*           soft    nofile          6000
+*           hard    nofile          8192
+root	    soft    nofile          6000
+root        hard    nofile          8192
+
+
+/etc/pam.d/su
+/etc/pam.d/sudo
+session required pam_limits.so
+
+
+
+<email_to>yasir.nazar@appster.in</email_to>
+<email_to>parker.anderson@payix.net</email_to>
+<email_to>jose.diaz@payix.net</email_to>
+<email_to>brian.anderson@payix.net</email_to>
+<email_to>Kevin.fisher@payix.net</email_to>
+
+
+34.210.213.134
+/var/ossec/bin/ossec-control  start
+/var/ossec/bin/manage_agents
+
+/var/ossec/bin/agent_control -lc
